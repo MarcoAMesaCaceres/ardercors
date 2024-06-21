@@ -9,8 +9,8 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
             integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="{% static '/css/productos.css' %}">
-        <script src="{% static '/js/productos.js' %}" async></script>
+            <link rel="stylesheet" href="{% static '/css/productos.css' %}">
+            <script src="{% static '/js/productos.js' %}" async></script>
         <title>productos | </title>
     </head>
     <body>
@@ -23,13 +23,13 @@
                 
                         <div class="button-container">
                             <button class="button button-blue"><a
-                            href="Iniciarsesion/">Login</a></button>
+                            href="{% url 'Iniciarsesion' %}">Login</a></button>
                             <button class="button button-yellow"><a
-                                href="ardecors/">Inicio</a></button>
-                            <button class="button button-green"><a href="sobre/">Sobre
+                                href="{% url 'ardecors' %}">Inicio</a></button>
+                            <button class="button button-green"><a href="{% url 'sobre' %}">Sobre
                                 Nosotros</a></button>
                             <button class="button button-red"><a
-                                href="contacto/">Contacto</a></button>
+                                href="{% url 'contacto' %}">Contacto</a></button>
                                 
                         </div>
                 

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 
@@ -16,3 +16,6 @@ def productos(request):
 
 def sobre(request):
     return render(request, 'sobre.html')
+
+def msobre(request):
+    return redirect('sobre')

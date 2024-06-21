@@ -16,14 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from pagardecors import views
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('pagardecors/', include('pagardecors.urls')),
-    path('', views.ardecors, name="ardecors"),
-    path('Iniciarsesion/', views.Iniciarsesion, name="Iniciarsesion"),
-    path('contacto/', views.contacto, name="contacto"),
-    path('productos/', views.productos, name="productos"),
-    path('sobre/', views.sobre, name="sobre"),
+    path('', include('pagardecors.urls')),
 ]
