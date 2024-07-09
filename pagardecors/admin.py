@@ -2,6 +2,11 @@ from django.contrib import admin
 from .models import TipoDePago, Producto, TipoDeProducto, Usuario, Compra, Venta, Material  
 # Register your models here.
 
+from django.contrib import admin
+from .models import TipoDePago, Producto, TipoDeProducto, Usuario, Compra, Venta, Material
+
+# Register your models here.
+
 class TipoDePagoAdmin(admin.ModelAdmin):
     fields = ['id_de_Pago', 'Efectivo', 'Tarjeta', 'Transferencia']
     list_display = ['id_de_Pago', 'Efectivo', 'Tarjeta', 'Transferencia']
@@ -19,11 +24,11 @@ class UsuarioAdmin(admin.ModelAdmin):
     list_display = ['id_Usuario', 'Primer_nombre', 'Segundo_nombre', 'Primer_apellido', 'Segundo_apellido', 'Tipo_documento', 'Documento', 'Direccion', 'Telefono', 'Correo']
 
 class CompraAdmin(admin.ModelAdmin):
-    fields = ['id_Compra', 'Cantidad', 'Valor', 'Fecha', 'tipo_de_pago']
-    list_display = ['id_Compra', 'Cantidad', 'Valor', 'Fecha', 'tipo_de_pago']
+    fields = ['id_Compra', 'Cantidad', 'Valor', 'tipo_de_pago']
+    list_display = ['id_Compra', 'Cantidad', 'Valor', 'tipo_de_pago']
 
 class VentaAdmin(admin.ModelAdmin):
-    fields = ['id_Venta', 'Fecha', 'Valor', 'tipo_de_pago']
+    fields = ['id_Venta', 'Valor', 'tipo_de_pago']
     list_display = ['id_Venta', 'Fecha', 'Valor', 'tipo_de_pago']
 
 class MaterialAdmin(admin.ModelAdmin):
@@ -36,4 +41,4 @@ admin.site.register(TipoDeProducto, TipoDeProductoAdmin)
 admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Compra, CompraAdmin)
 admin.site.register(Venta, VentaAdmin)
-admin.site.register(Material, MaterialAdmin) 
+admin.site.register(Material, MaterialAdmin)
