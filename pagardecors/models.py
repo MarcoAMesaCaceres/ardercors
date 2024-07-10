@@ -15,6 +15,20 @@ class Producto(models.Model):
     Precio = models.FloatField(null=True)
     Tamaño = models.IntegerField(null=True)
     Color = models.TextField(null=True)
+    titulo = models.CharField(max_length = 100, verbose_name='Título')
+    imagen = models.ImageField(upload_to='imagenes', verbose_name='Imagen',null=True)
+    descripcion = models.TextField(verbose_name='Descripción', null=True)
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        fila = "Título: " + self.titulo + " - " + " Descripción" + self.descripcion
+        return fila
+    
+    def delete(self, using = None, keep_parents = False):
+        self.imagen.storage.delete(self.imagen.name)
+        super() .delete()
 
 class TipoDeProducto(models.Model):
     id_Tipo_de_producto = models.IntegerField(primary_key=True)
