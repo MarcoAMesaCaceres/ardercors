@@ -137,3 +137,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'pagardecors', 'static'),
 ]
+
+CSRF_COOKIE_DOMAIN = 'tu-dominio.com'
+
+LOGIN_REDIRECT_URL = 'index'

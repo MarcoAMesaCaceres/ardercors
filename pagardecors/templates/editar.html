@@ -1,0 +1,19 @@
+{% load static %}
+<!-- D:\DJANGO\ardercors\pagardecors\templates\editar.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Producto</title>
+</head>
+<body>
+    <h1>Editar Producto</h1>
+    <form method="POST">
+        <!-- Incluye el campo CSRF -->
+        {% csrf_token %}
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ producto.nombre }}">
+        <!-- Otros campos del producto -->
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>
