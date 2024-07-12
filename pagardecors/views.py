@@ -4,6 +4,7 @@ from .models import Producto
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from .models import Producto
+#from .forms import ArdecorForm
 
 def ardecors(request):
     return render(request, 'ardecors.html')
@@ -38,6 +39,7 @@ def productos(request):
     return render(request, 'productos.html', {'productos': productos})
 
 def crear(request):
+    #formulario = ArdecorForm(request.POST or None)
     if request.method == 'POST':
         nombre = request.POST['nombre']
         descripcion = request.POST['descripcion']

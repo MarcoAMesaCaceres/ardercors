@@ -7,6 +7,11 @@ from .models import TipoDePago, Producto, TipoDeProducto, Usuario, Compra, Venta
 
 # Register your models here.
 
+admin.site.site_header = "ARDECORS SPORT"
+admin.site.index_title = "Ardecors"
+admin.site.site_title = "Sport"
+
+
 class TipoDePagoAdmin(admin.ModelAdmin):
     fields = ['id_de_Pago', 'Efectivo', 'Tarjeta', 'Transferencia']
     list_display = ['id_de_Pago', 'Efectivo', 'Tarjeta', 'Transferencia']
