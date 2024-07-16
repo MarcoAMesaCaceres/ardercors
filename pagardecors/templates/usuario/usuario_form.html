@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Detalles del Usuario</h1>
+<dl>
+    <dt>Nombre completo:</dt>
+    <dd>{{ usuario.Primer_nombre }} {{ usuario.Segundo_nombre }} {{ usuario.Primer_apellido }} {{ usuario.Segundo_apellido }}</dd>
+    
+    <dt>Tipo de documento:</dt>
+    <dd>{{ usuario.Tipo_documento }}</dd>
+    
+    <dt>Número de documento:</dt>
+    <dd>{{ usuario.Documento }}</dd>
+    
+    <dt>Dirección:</dt>
+    <dd>{{ usuario.Direccion }}</dd>
+    
+    <dt>Teléfono:</dt>
+    <dd>{{ usuario.Telefono }}</dd>
+    
+    <dt>Correo:</dt>
+    <dd>{{ usuario.Correo }}</dd>
+</dl>
+<a href="{% url 'usuario_update' usuario.id_Usuario %}">Editar</a>
+<a href="{% url 'usuario_delete' usuario.id_Usuario %}">Eliminar</a>
+<a href="{% url 'usuario_list' %}">Volver a la lista</a>
+{% endblock %}

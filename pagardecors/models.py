@@ -1,9 +1,5 @@
 from django.db import models
 
-
-# Create your models here.
-from django.db import models
-
 class TipoDePago(models.Model):
     id_de_Pago = models.IntegerField(primary_key=True)
     Efectivo = models.FloatField(null=True)
@@ -37,17 +33,19 @@ class TipoDeProducto(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
 
 class Usuario(models.Model):
-    id_Usuario = models.IntegerField(primary_key=True)
-    Primer_nombre = models.TextField(null=True)
-    Segundo_nombre = models.TextField(null=True)
-    Primer_apellido = models.TextField(null=True)
-    Segundo_apellido = models.TextField(null=True)
-    Tipo_documento = models.TextField(null=True)
-    Documento = models.BigIntegerField(null=True)
-    Direccion = models.TextField(null=True)
-    Telefono = models.FloatField(null=True)
-    Correo = models.TextField(null=True)
+    id_Usuario = models.AutoField(primary_key=True)
+    Primer_nombre = models.CharField(max_length=100)
+    Segundo_nombre = models.CharField(max_length=100, null=True, blank=True)
+    Primer_apellido = models.CharField(max_length=100)
+    Segundo_apellido = models.CharField(max_length=100, null=True, blank=True)
+    Tipo_documento = models.CharField(max_length=100)
+    Documento = models.BigIntegerField(unique=True)
+    Direccion = models.CharField(max_length=100)
+    Telefono = models.BigIntegerField()
+    Correo = models.EmailField(max_length=100)
 
+    def __str__(self):
+        return f"{self.Primer_nombre} {self.Primer_apellido}"
 class Compra(models.Model):
     id_Compra = models.IntegerField(primary_key=True)
     Cantidad = models.IntegerField(null=True, default=None)
@@ -69,3 +67,4 @@ class Material(models.Model):
     Tipo = models.TextField(null=True)
     Nombre = models.TextField(null=True)
     Precio = models.FloatField(null=True)
+    

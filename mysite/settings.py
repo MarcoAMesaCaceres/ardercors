@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Apps Propias
-    'pagardecors'
+    'pagardecors',
 ]
 
 MIDDLEWARE = [
