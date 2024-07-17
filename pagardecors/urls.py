@@ -1,13 +1,11 @@
 from django.urls import include,path
 from . import views
 from django.conf import settings
-from django.contrib.staticfiles.urls import static, admin
+
 
 urlpatterns = [
     path('', views.ardecors, name="ardecors"),
-
     path('iniciar_sesion/', views.iniciar_sesion, name='iniciar_sesion'),
-    path('', views.index, name='index'),
     path('registro/', views.registro, name='registro'),  # Cambié 'registrar' a 'registro'
     path('cerrar_sesion/', views.cerrar_sesion, name='cerrar_sesion'),
 
@@ -29,4 +27,4 @@ urlpatterns = [
     path('usuarios/<int:pk>/edit/', views.usuario_update, name='usuario_update'),
     path('usuarios/<int:pk>/delete/', views.usuario_delete, name='usuario_delete'),
     path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 

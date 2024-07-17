@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Producto, Usuario
+from .models import Producto, Usuario, Producto, Material, Compra, Venta, TipoDePago, TipoDeProducto
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout
-from .forms import UsuarioForm, ProductoForm, MaterialForm, TipoDePagoForm, CompraForm, VentaForm
+from .forms import UsuarioForm, ProductoForm, MaterialForm, CompraForm, VentaForm
 
 
 # CRUD para Usuario
@@ -126,6 +127,11 @@ def custom_logout(request):
     
 
 def admin_dashboard(request):
+    usuarios_count = Usuario.objects.count()
+    productos_count = Producto.objects.count()
+    materiales_count = Material.objects.count()
+    compras_count = Compra.objects.count()
+    ventas_count = Venta.objects.count()
     context = {
         'usuarios_count': Usuario.objects.count(),
         'productos_count': Producto.objects.count(),

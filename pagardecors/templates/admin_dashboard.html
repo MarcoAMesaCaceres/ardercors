@@ -1,41 +1,41 @@
-{% extends 'base.html' %}
+    
 
-{% block content %}
-<h1>Panel de Administración</h1>
+    {% block content %}
+    <h1>Panel de Administración</h1>
 
-<div class="dashboard-stats">
-    <div class="stat-box">
-        <h3>Usuarios</h3>
-        <p>{{ usuarios_count }}</p>
-        <a href="{% url 'usuario_list' %}" class="btn">Gestionar Usuarios</a>
+    <div class="dashboard-stats">
+        <div class="stat-box">
+            <h3>Usuarios</h3>
+            <p>{{ usuarios_count }}</p>
+            <a href="{% url 'usuario_list' %}" class="btn">Gestionar Usuarios</a>
+        </div>
+        <div class="stat-box">
+            <h3>Productos</h3>
+            <p>{{ productos_count }}</p>
+            <a href="{% url 'productos' %}" class="btn">Gestionar Productos</a>
+        </div>
+        <div class="stat-box">
+            <h3>Materiales</h3>
+            <p>{{ materiales_count }}</p>
+            <a href="#" class="btn">Gestionar Materiales</a>
+        </div>
+        <div class="stat-box">
+            <h3>Compras</h3>
+            <p>{{ compras_count }}</p>
+            <a href="#" class="btn">Gestionar Compras</a>
+        </div>
+        <div class="stat-box">
+            <h3>Ventas</h3>
+            <p>{{ ventas_count }}</p>
+            <a href="#" class="btn">Gestionar Ventas</a>
+        </div>
     </div>
-    <div class="stat-box">
-        <h3>Productos</h3>
-        <p>{{ productos_count }}</p>
-        <a href="{% url 'productos' %}" class="btn">Gestionar Productos</a>
-    </div>
-    <div class="stat-box">
-        <h3>Materiales</h3>
-        <p>{{ materiales_count }}</p>
-        <a href="#" class="btn">Gestionar Materiales</a>
-    </div>
-    <div class="stat-box">
-        <h3>Compras</h3>
-        <p>{{ compras_count }}</p>
-        <a href="#" class="btn">Gestionar Compras</a>
-    </div>
-    <div class="stat-box">
-        <h3>Ventas</h3>
-        <p>{{ ventas_count }}</p>
-        <a href="#" class="btn">Gestionar Ventas</a>
-    </div>
-</div>
 
-<div class="quick-actions">
-    <h2>Acciones Rápidas</h2>
-    <a href="{% url 'usuario_create' %}" class="btn">Crear Usuario</a>
-    <a href="{% url 'crear' %}" class="btn">Crear Producto</a>
-    <a href="#" class="btn">Registrar Compra</a>
-    <a href="#" class="btn">Registrar Venta</a>
-</div>
-{% endblock %}
+    <div class="quick-actions">
+        <h2>Acciones Rápidas</h2>
+        <a href="{% url 'usuario_create' %}" class="btn">Crear Usuario</a>
+        <a href="{% url 'crear' %}" class="btn">Crear Producto</a>
+        <a href="#" class="btn">Registrar Compra</a>
+        <a href="#" class="btn">Registrar Venta</a>
+    </div>
+    {% endblock %}
