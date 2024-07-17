@@ -57,7 +57,7 @@ def iniciar_sesion(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('index')
+            return redirect('admin_dashboard')
         else:
             return render(request, 'iniciar_sesion.html', {'error': 'Usuario o contraseña incorrectos'})
     return render(request, 'iniciar_sesion.html')
@@ -86,7 +86,7 @@ def crear(request):
         descripcion = request.POST['descripcion']
         precio = request.POST['precio']
         Producto.objects.create(nombre=nombre, descripcion=descripcion, precio=precio)
-        return redirect('index')
+        return redirect('#')
     return render(request, 'crear.html')
 
 def editar(request, id):
@@ -96,7 +96,7 @@ def editar(request, id):
         producto.descripcion = request.POST['descripcion']
         producto.precio = request.POST['precio']
         producto.save()
-        return redirect('index')
+        return redirect('#')
     return render(request, 'editar.html', {'producto': producto})
 
 def index(request):
@@ -107,8 +107,8 @@ def eliminar(request, id):
     producto = get_object_or_404(Producto, id=id)
     if request.method == 'POST':
         producto.delete()
-        return redirect('index')
-    return redirect('index')
+        return redirect('#')
+    return redirect('#')
 
 def sobre(request):
     return render(request, 'sobre.html')

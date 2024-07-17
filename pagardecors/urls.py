@@ -4,7 +4,8 @@ from django.conf import settings
 
 
 urlpatterns = [
-    path('', views.ardecors, name="ardecors"),
+    path('', views.ardecors, name="ardecors"),  # URL para la vista index
+    path('', views.admin_dashboard, name='admin_dashboard'),
     path('iniciar_sesion/', views.iniciar_sesion, name='iniciar_sesion'),
     path('registro/', views.registro, name='registro'),  # Cambié 'registrar' a 'registro'
     path('cerrar_sesion/', views.cerrar_sesion, name='cerrar_sesion'),
@@ -26,5 +27,5 @@ urlpatterns = [
     path('usuarios/new/', views.usuario_create, name='usuario_create'),
     path('usuarios/<int:pk>/edit/', views.usuario_update, name='usuario_update'),
     path('usuarios/<int:pk>/delete/', views.usuario_delete, name='usuario_delete'),
-    path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    
 ] 

@@ -140,4 +140,4 @@ STATICFILES_DIRS = [
 
 CSRF_COOKIE_DOMAIN = 'tu-dominio.com'
 
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'admin_dashboard'  

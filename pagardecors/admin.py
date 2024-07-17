@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import TipoDePago, Producto, TipoDeProducto, Usuario, Compra, Venta, Material  
+from .models import Producto, Usuario, Compra, Venta, Material  
 # Register your models here.
 
 from django.contrib import admin
-from .models import TipoDePago, Producto, TipoDeProducto, Usuario, Compra, Venta, Material
+from .models import TipoDePago, TipoDeProducto, ProductoAdmin, TipoDeProductoAdmin, TipoDePagoAdmin, UsuarioAdmin, CompraAdmin, VentaAdmin, MaterialAdmin
 
 # Register your models here.
 
