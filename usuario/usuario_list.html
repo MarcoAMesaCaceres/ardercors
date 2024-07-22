@@ -1,0 +1,35 @@
+
+
+{% block content %}
+<h2>Lista de Usuarios</h2>
+
+<a href="{% url 'usuario_create' %}" class="btn btn-primary">Crear Nuevo Usuario</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre de Usuario</th>
+            <th>Correo Electrónico</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ usuario.username }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>
+                <a href="{% url 'usuario_update' usuario.pk %}" class="btn btn-sm btn-info">Editar</a>
+                <a href="{% url 'usuario_delete' usuario.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No hay usuarios registrados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Volver al Dashboard</a>
+{% endblock %}

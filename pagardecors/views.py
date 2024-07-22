@@ -1,17 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Producto, Usuario, Producto, Material, Compra, Venta, TipoDePago, TipoDeProducto
-
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout
 from .forms import UsuarioForm, ProductoForm, MaterialForm, CompraForm, VentaForm
-
+from django.urls import reverse 
 
 # CRUD para Usuario
 def usuario_list(request):
     usuarios = Usuario.objects.all()
-    return render(request, 'usuario_list.html', {'usuarios': usuarios})
+    return render(request, 'usuario/usuario_list.html', {'usuarios': usuarios})
 
 def usuario_detail(request, pk):
     usuario = get_object_or_404(Usuario, pk=pk)
@@ -22,10 +22,11 @@ def usuario_create(request):
         form = UsuarioForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('usuario_list')
+            # Aquí podrías redirigir a usuario_list o a cualquier otra página
     else:
         form = UsuarioForm()
-    return render(request, 'usuario_form.html', {'form': form})
+    
+    return render(request, 'usuario/usuario_form.html', {'form': form})
 
 def usuario_update(request, pk):
     usuario = get_object_or_404(Usuario, pk=pk)
@@ -57,7 +58,7 @@ def iniciar_sesion(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('admin_dashboard')
+            return redirect('admin_dashboard')  
         else:
             return render(request, 'iniciar_sesion.html', {'error': 'Usuario o contraseña incorrectos'})
     return render(request, 'iniciar_sesion.html')
@@ -126,14 +127,10 @@ def custom_logout(request):
         return redirect('login')
     
 
+
 def admin_dashboard(request):
-    usuarios_count = Usuario.objects.count()
-    productos_count = Producto.objects.count()
-    materiales_count = Material.objects.count()
-    compras_count = Compra.objects.count()
-    ventas_count = Venta.objects.count()
     context = {
-        'usuarios_count': Usuario.objects.count(),
+        'usuario_count': Usuario.objects.count(),
         'productos_count': Producto.objects.count(),
         'materiales_count': Material.objects.count(),
         'compras_count': Compra.objects.count(),

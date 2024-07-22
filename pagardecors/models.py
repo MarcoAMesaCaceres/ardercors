@@ -1,70 +1,74 @@
 from django.db import models
+from django.contrib import admin
 
 class TipoDePago(models.Model):
-    id_de_Pago = models.IntegerField(primary_key=True)
-    Efectivo = models.FloatField(null=True)
-    Tarjeta = models.FloatField(null=True)
-    Transferencia = models.FloatField(null=True)
-
-class Producto(models.Model):
-    id_Producto = models.IntegerField(primary_key=True)
-    Precio = models.FloatField(null=True)
-    Tamaño = models.IntegerField(null=True)
-    Color = models.TextField(null=True)
-    titulo = models.CharField(max_length = 100, verbose_name='Título')
-    imagen = models.ImageField(upload_to='imagenes', verbose_name='Imagen',null=True)
-    descripcion = models.TextField(verbose_name='Descripción', null=True)
-    nombre = models.CharField(max_length=100)
-    descripcion = models.TextField()
-    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    id_de_pago = models.AutoField(primary_key=True)
+    efectivo = models.BooleanField(default=False)
+    tarjeta = models.BooleanField(default=False)
+    transferencia = models.BooleanField(default=False)
 
     def __str__(self):
-        fila = "Título: " + self.titulo + " - " + " Descripción" + self.descripcion
-        return fila
-    
-    def delete(self, using = None, keep_parents = False):
+        return f"Transferencia: {self.transferencia}, Efectivo: {self.efectivo}, Tarjeta: {self.tarjeta}"
+
+class Producto(models.Model):
+    id_producto = models.AutoField(primary_key=True)  # Cambiado a AutoField
+    tamaño = models.IntegerField(null=True, blank=True)
+    color = models.TextField(null=True, blank=True)
+    titulo = models.CharField(max_length=100, verbose_name='Título', null=True, blank=True)
+    imagen = models.ImageField(upload_to='imagenes', verbose_name='Imagen', null=True)
+    descripcion = models.TextField(verbose_name='Descripción', null=True, blank=True)
+    nombre = models.CharField(max_length=100, null=True, blank=True)
+    precio = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+
+    def __str__(self):
+        return f"Título: {self.titulo} - Descripción: {self.descripcion}"
+
+    def delete(self, using=None, keep_parents=False):
         self.imagen.storage.delete(self.imagen.name)
-        super() .delete()
+        super().delete()
 
 class TipoDeProducto(models.Model):
-    id_Tipo_de_producto = models.IntegerField(primary_key=True)
-    Nombre = models.TextField(null=True)
-    Referencia = models.TextField(null=True)
+    id_tipo_de_producto = models.AutoField(primary_key=True)  # Cambiado a AutoField
+    nombre = models.TextField(null=True)
+    referencia = models.TextField(null=True)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
 
 class Usuario(models.Model):
-    id_Usuario = models.AutoField(primary_key=True)
-    Primer_nombre = models.CharField(max_length=100)
-    Segundo_nombre = models.CharField(max_length=100, null=True, blank=True)
-    Primer_apellido = models.CharField(max_length=100)
-    Segundo_apellido = models.CharField(max_length=100, null=True, blank=True)
-    Tipo_documento = models.CharField(max_length=100)
-    Documento = models.BigIntegerField(unique=True)
-    Direccion = models.CharField(max_length=100)
-    Telefono = models.BigIntegerField()
-    Correo = models.EmailField(max_length=100)
-
+    primer_nombre = models.CharField(max_length=50)
+    segundo_nombre = models.CharField(max_length=50, blank=True, null=True)
+    primer_apellido = models.CharField(max_length=50)
+    segundo_apellido = models.CharField(max_length=50, blank=True, null=True)
+    tipo_documento = models.CharField(max_length=20)
+    documento = models.CharField(max_length=20, unique=True)
+    correo = models.EmailField()
+    direccion = models.CharField(max_length=100)
+    telefono = models.CharField(max_length=15)
     def __str__(self):
-        return f"{self.Primer_nombre} {self.Primer_apellido}"
+        return f"{self.primer_nombre} {self.primer_apellido}"
+
 class Compra(models.Model):
-    id_Compra = models.IntegerField(primary_key=True)
-    Cantidad = models.IntegerField(null=True, default=None)
-    Valor = models.BigIntegerField(null=True, default=None)
-    Fecha = models.DateTimeField(auto_now_add=True)
-    tipo_de_pago = models.ForeignKey(TipoDePago, on_delete=models.CASCADE)
+    id_compra = models.AutoField(primary_key=True)  # Cambiado a AutoField
+    cantidad = models.IntegerField(null=True, blank=True)
+    valor = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)  # Cambiado a DecimalField
+    fecha = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    tipo_de_pago = models.ForeignKey(TipoDePago, on_delete=models.CASCADE, null=True, blank=True)
+    
+    def __str__(self):
+        return f"Compra valor: {self.valor}, Cantidad: {self.cantidad}"
 
 class Venta(models.Model):
-    id_Venta = models.IntegerField(primary_key=True)
-    Fecha = models.DateTimeField(auto_now_add=True)
-    Valor = models.FloatField(null=True)
-    tipo_de_pago = models.ForeignKey(TipoDePago, on_delete=models.CASCADE)
-    
+    id_venta = models.AutoField(primary_key=True)
+    fecha = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    valor = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    tipo_de_pago = models.ForeignKey(TipoDePago, on_delete=models.CASCADE, null=True, blank=True)
+
 class Material(models.Model):
-    id_Material = models.IntegerField(primary_key=True)
-    Calidad = models.TextField(null=True)
-    Tamaño = models.TextField(null=True)
-    Color = models.TextField(null=True)
-    Tipo = models.TextField(null=True)
-    Nombre = models.TextField(null=True)
-    Precio = models.FloatField(null=True)
-    
+    nombre = models.CharField(max_length=100)
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    calidad = models.CharField(max_length=50)
+    tamaño = models.CharField(max_length=50)
+    color = models.CharField(max_length=50)
+    tipo = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nombre

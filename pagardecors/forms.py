@@ -17,30 +17,32 @@ class LoginForm(forms.Form):
 class UsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ['Primer_nombre', 'Segundo_nombre', 'Primer_apellido', 'Segundo_apellido', 
-                'Tipo_documento', 'Documento', 'Direccion', 'Telefono', 'Correo']
+        fields = [
+            'primer_nombre', 'segundo_nombre', 'primer_apellido', 
+            'segundo_apellido', 'tipo_documento', 'documento', 
+            'correo', 'direccion', 'telefono']
 
 class ProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
-        fields = ['Precio', 'Tamaño', 'Color', 'titulo', 'imagen', 'descripcion', 'nombre', 'precio']
+        fields = ['precio', 'tamaño', 'color', 'titulo', 'imagen', 'descripcion', 'nombre']
 
 class MaterialForm(forms.ModelForm):
     class Meta:
         model = Material
-        fields = ['Calidad', 'Tamaño', 'Color', 'Tipo', 'Nombre', 'Precio']
+        fields = ['tipo', 'calidad', 'precio', 'color', 'tamaño', 'nombre']
 
 class TipoDePagoForm(forms.ModelForm):
     class Meta:
         model = TipoDePago
-        fields = ['Efectivo', 'Tarjeta', 'Transferencia']
+        fields = ['transferencia', 'efectivo', 'tarjeta']
 
 class CompraForm(forms.ModelForm):
     class Meta:
         model = Compra
-        fields = ['Cantidad', 'Valor', 'tipo_de_pago']
+        fields = ['cantidad', 'valor', 'tipo_de_pago']  
 
 class VentaForm(forms.ModelForm):
     class Meta:
         model = Venta
-        fields = ['Valor', 'tipo_de_pago']
+        fields = ['valor', 'tipo_de_pago']
